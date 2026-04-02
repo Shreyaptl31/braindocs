@@ -19,10 +19,11 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], all
 
 client = OpenAI()
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large")
-QDRANT_URL = os.getenv("QDRANT_URL", "http://vector-db:6333")
-MAX_MESSAGES = 5
 
-# In-memory session store: { session_id: { count, created_at } }
+QDRANT_URL    = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+MAX_MESSAGES  = 5
+
 sessions: dict = {}
 
 
@@ -93,6 +94,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         QdrantVectorStore.from_documents(
             documents=split_docs,
             url=QDRANT_URL,
+            api_key=QDRANT_API_KEY,
             collection_name=collection_name,
             embedding=embedding_model,
         )
@@ -118,6 +120,7 @@ async def query(req: QueryRequest, x_session_id: Optional[str] = Header(None)):
     try:
         vector_db = QdrantVectorStore.from_existing_collection(
             url=QDRANT_URL,
+            api_key=QDRANT_API_KEY,
             collection_name=req.collection_name,
             embedding=embedding_model,
         )
