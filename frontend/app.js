@@ -1,4 +1,4 @@
-const API = "";
+const API = "https://braindocs-eadv.onrender.com";
 const MAX = 5;
 let docs = [], activeDoc = null, fileToUpload = null;
 let sessionId = null;
