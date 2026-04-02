@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrainDoc — AI Document Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=3" />
+  </head>
+  <body>
+    <div class="bg-canvas">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <div class="wrap">
+      <!-- HEADER -->
+      <header>
+        <div class="header-row">
+          <div class="logo">
+            <div class="logo-icon">🧠</div>
+            <div>
+              <h1>Brain<span>Doc</span></h1>
+              <p>AI Document Intelligence</p>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="api-badge" id="msgCounter">
+              <span class="msg-dot" id="msgDot"></span>
+              <span id="counterText">5 messages left</span>
+            </div>
+            <div class="api-badge">
+              <span class="api-dot" id="apiDot"></span>
+              <span id="apiStatus">connecting…</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="grid">
+        <aside>
+          <div class="card">
+            <div class="card-label">01 — Upload</div>
+
+            <div class="drop-zone" id="dropZone">
+              <input type="file" id="fileInput" accept=".pdf" />
+              <div class="drop-icon">📄</div>
+              <h3>Drop your PDF here</h3>
+              <p>or <span class="highlight">click to browse</span></p>
+            </div>
+
+            <div class="file-selected" id="fileSelected">
+              <span class="file-selected-icon">📋</span>
+              <div class="file-selected-info">
+                <div class="file-selected-name" id="selectedName">—</div>
+                <div class="file-selected-size" id="selectedSize">—</div>
+              </div>
+            </div>
+
+            <div class="progress-wrap" id="progressWrap">
+              <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-text" id="progressText">Indexing…</div>
+            </div>
+
+            <button class="btn btn-glow" id="uploadBtn" disabled>
+              ⚡ Index Document
+            </button>
+
+            <div style="margin-top: 24px">
+              <div class="card-label">02 — Documents</div>
+              <div class="doc-list" id="docList">
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    text-align: center;
+                    padding: 16px 0;
+                  "
+                >
+                  No documents yet
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <main>
+          <div class="card chat-card">
+            <div class="card-label">03 — Ask</div>
+
+            <div class="messages" id="messages">
+              <div class="empty" id="emptyState">
+                <div class="empty-icon">💬</div>
+                <h3>No conversation yet</h3>
+                <p>
+                  Upload a PDF, select it, then ask anything about its content.
+                </p>
+                <div class="session-notice">
+                  <span>⚡</span> Free session — <strong>5 messages</strong> per
+                  visit
+                </div>
+              </div>
+            </div>
+
+            <div class="limit-banner" id="limitBanner">
+              <span class="limit-banner-icon">🔒</span>
+              <div>
+                <strong>Message limit reached.</strong><br />
+                You've used all 5 messages in this session.
+              </div>
+            </div>
+
+            <div class="input-row" id="inputRow">
+              <textarea
+                class="query-box"
+                id="queryBox"
+                placeholder="Ask a question about your document…"
+                disabled
+                rows="1"
+              ></textarea>
+              <button class="send-btn" id="sendBtn" disabled title="Send">
+                ➤
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <footer>
+        <span>BrainDoc</span>
+      </footer>
+    </div>
+
+    <script src="app.js?v=3"></script>
+  </body>
+</html>
